@@ -39,12 +39,19 @@ def button(msg, x, y, w, h, ic, ac, action=None):
 
 def game_intro():
     intro = True
+    # Load the background image
+    background_image = pygame.image.load("background.png")
+    background_image = pygame.transform.scale(background_image, (WINDOW_SIZE, WINDOW_SIZE))  # Scale the image to fit the window
+    
     while intro:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-        game_window.fill(WHITE)
+                
+        # Draw the background image
+        game_window.blit(background_image, [0, 0])
+
         button("Play", 150, 250, 100, 50, GREEN, (0, 128, 0), game_loop)
         button("About", 275, 250, 100, 50, (128, 128, 128), (64, 64, 64), about_page)
         button("Quit", 400, 250, 100, 50, RED, (128, 0, 0), quit_game)
